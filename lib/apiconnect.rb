@@ -7,8 +7,8 @@ class GetRequester
   attr_accessor :url
 
 
-  def initialize(url)
-    @url = url
+  def initialize(api_key)
+    @url = "https://www.superheroapi.com/api.php/#{api_key}/search/howard"
 
 
   end
