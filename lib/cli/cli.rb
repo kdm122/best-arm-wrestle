@@ -25,6 +25,11 @@ class Cli
         end
 
     end
+
+    def champion_details(name)
+        Api.cdet_by_name(name)
+    end
+
     
     def print_intro
         puts "Available Champions"
@@ -47,6 +52,10 @@ class Cli
     end
 
     def selection_prompt
+        gets.chomp
+    end
+
+    def search_prompt
         gets.chomp
     end
 
