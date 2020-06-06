@@ -14,22 +14,27 @@ class Api
 #
  # end
 
-  def self.search(name)
-    
+  def self.search(name)  #search results.
     res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name}")
+    data = JSON.parse(res.body)
+    data['results'].each do |champ|
+      puts champ['name']
+      puts champ['id']
+    end
+   # binding.pry
   end
 
 
-  def get_response_body
-    uri = URI.parse(@url)
-    response = Net::HTTP.get_response(uri)
-    response.body
-  end
+#  def get_response_body
+#    uri = URI.parse(@url)
+#    response = Net::HTTP.get_response(uri)
+#    response.body
+#  end
 
-  def parse_json
-    parsed_json = JSON.parse(self.get_response_body)
-    parsed_json
-  end
+#  def parse_json
+#    parsed_json = JSON.parse(self.get_response_body)
+#    parsed_json
+#  end
 
 
 
