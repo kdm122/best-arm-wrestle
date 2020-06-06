@@ -1,7 +1,7 @@
-require 'dotenv/load'
-require 'net/http'
-require 'open-uri'
-require 'json'
+#require 'dotenv/load' #### BYYYYYYE
+#require 'net/http'
+#require 'open-uri'
+#require 'json'
 
  
 
