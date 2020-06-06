@@ -7,12 +7,18 @@ class Api
   BASE_URL = 'https://www.superheroapi.com/api.php/'
   
 
-  def initialize(search_term)
+ # def initialize(search_term)
+#
+ #   @url = "#{BASE_URL}#{KEY}/search/#{search_term}" # they want commented code.  Switched up the argument since this is no longer a multiple purpose method.  This is going to be 100% for searching superheroes.  Rather than taking an json link as an argument, I'm instead forcing it to my desired API, with the argument now being the API key.
+  #  puts @url
+#
+ # end
 
-    @url = "#{BASE_URL}#{KEY}/search/#{search_term}" # they want commented code.  Switched up the argument since this is no longer a multiple purpose method.  This is going to be 100% for searching superheroes.  Rather than taking an json link as an argument, I'm instead forcing it to my desired API, with the argument now being the API key.
-    puts @url
-
+  def self.search(name)
+    
+    res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name}")
   end
+
 
   def get_response_body
     uri = URI.parse(@url)
@@ -29,5 +35,5 @@ class Api
 
 end
 
-howard = Api.new('howard')
-print howard.parse_json
+#howard = Api.new('howard')
+#print howard.parse_json
