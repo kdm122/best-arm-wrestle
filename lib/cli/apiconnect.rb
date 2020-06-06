@@ -5,7 +5,7 @@
 
  
 
-class GetRequester
+class Api
   attr_accessor :url
 
   KEY = ENV['SUPER_KEY']
@@ -34,5 +34,5 @@ class GetRequester
 
 end
 
-howard = GetRequester.new('howard')
+howard = Api.new('howard')
 print howard.parse_json
