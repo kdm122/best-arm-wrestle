@@ -1,15 +1,13 @@
 class Champion
-    attr_accessor :id, :name, :int, :str, :spd, :dur, :pow, :comb
+    attr_accessor :id, :name, :powerstats
 
     @@all = []
-    def initialize(id, name)
+
+    def initialize(id, name, powerstats)
         @id = id
         @name = name
-        @int = int
-        @str = str
-        @spd = spd
-        @dur = pow
-        @comb = comb
+        @powerstats = powerstats # going to try and throw these into an array, rather than individual items.
+      
         @@all << self
 
     end
