@@ -51,8 +51,8 @@ class Champion
         puts ""
         puts "MORTAL KOMBAT!"
         # binding.pry
-
-        if champion1.powerstats['strength'] > champion2.powerstats['strength']
+      #  binding.pry
+        if champion1.powerstats['strength'].to_i > champion2.powerstats['strength'].to_i # fixed a bad comparison
             puts "#{champion1.name} was victorious. #{champion2.name} plots their revenge for another day."
         else
             puts "#{champion2.name} was victorious. #{champion1.name} plots their revenge for another day."

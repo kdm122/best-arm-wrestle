@@ -9,7 +9,8 @@ class Api
   def self.base  #Just give us some base results.
     ## time to get rid of these static fighters.  Let's try and insert an RNG
 
-    rng = 5.times.map { rand(1..100) }
+  #  rng = 5.times.map { rand(1..100) } # realized that RNG actually generates some not-fun seeding...  
+  rng = [69, 644, 655, 530, 391]
   #  binding.pry
     rng.each do |random|
       
