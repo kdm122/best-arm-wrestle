@@ -18,6 +18,7 @@ class Api
    #   binding.pry
       #    binding.pry # inserting this here because I'm about to start checking into RestClient response codes.  Need to be able to handle failed seearches.    
       data = JSON.parse(res.body)
+  #    binding.pry
   #    data["response"] # checking if this was error/success
   #binding.pry
    #   data['results'].each do |champ| # can eliminate this now that I'm not seeding with a bunch of data and instead, individual pulls
@@ -34,7 +35,15 @@ class Api
 
 
   def self.search_by_name(name)  #search results.
-    name_space = name.split(' ').join('%20')
+    if name == "Kyle"
+      Champion.new(0, "Kyle", {"intelligence"=>"1000", "strength"=>"1000", "speed"=>"1000", "durability"=>"1000", "power"=>"1000", "combat"=>"1000"}, {"gender"=>"Male", "race"=>"Human", "height"=>["5'9", "178 cm"], "weight"=>["170 lb", "77 kg"], "eye-color"=>"Blue", "hair-color"=>"Blonde"})
+    puts ""
+    puts ""
+    puts "SECRET CHARACTER UNLOCKED"
+    puts ""
+    puts ""
+
+      name_space = name.split(' ').join('%20')
     res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name_space}")
     data = JSON.parse(res.body)
     #if data['results'].count > 1
@@ -45,7 +54,10 @@ class Api
     #  end
     #  
     #else
-    if data['response'] == "error"
+   
+    
+   
+    elsif data['response'] == "error"
       puts "Bad Search, not in our Superhero Database"
     elsif Champion.all.any? {|c| name == c.name }
       puts "Already in our pool.  You're not going to trick me into querying the API again." # can't touch it twice for the same thing
