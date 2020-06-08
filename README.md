@@ -11,6 +11,20 @@ Setup .env with the following:
 
 SUPER_KEY='xxxxxxxxxxxxxxx'
 
+Instructions:
+
+The Superhero CLI takes some seeded superheroes and allows you to get additional information about them, as well put them into simulated battle.  
+
+Application can be run using bin/run
+
+The following main menu commands are available:
+
+participants (shows existing character data within the application)
+more info (shows additional information about the existing character set)
+search (allows a user to search for additional characters and add them to the pool)
+simulate (see who's going to win in an arm wrestle)
+exit
+
 
 Project Irrelevant:
 
@@ -19,3 +33,5 @@ Project Irrelevant:
 06/05/20, Mayor's log.  It's been a minute.  Only 13 minutes remaining in the day.  Going to start by setting up my API key within the .env and go from there.
 
 06/07/20, Mayor's log.  I actually accomplished quite a bit during my last session.  I'm understanding the importance of personal documentation.  I'm just now resuming where I left off, and trying to situate where I actually left off.  I'm feeling confident about reaching the MVP shortly.  Ideally I'll be able to introduce some of the more advanced functionality that I was hoping to bring to the CLI.
+
+06/08/20, Mayor's log.  Early on the 8th.  We are now querying against the API, with some seeding of data (sorry, the API apparently won't let me just fetch a list of results), pulling the characters as Class instances, allowing the addition of new characters, and finally...  the arm wrestle.  
