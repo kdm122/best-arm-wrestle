@@ -18,6 +18,7 @@ class Cli
        # id = id.to_i
        if Champion.all.any? {|c| name == c.name }
             true
+            print_more_info(name)
         else
             print_bad_name
             sleep 2.0
@@ -27,7 +28,7 @@ class Cli
     end
 
     def champion_details(name)
-        Api.cdet_by_name(name)
+        Champion.cdet_by_name(name)
     end
 
     
@@ -46,6 +47,12 @@ class Cli
     def print_selection_prompt
         puts "Select a Champion by Name"
     end
+
+    def print_more_info(name)
+        puts "Info on #{name}"
+        Champion.cdet_by_name(name)
+    end
+
 
     def print_bad_name
         puts "Poor selection, try again"
