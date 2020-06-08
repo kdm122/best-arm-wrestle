@@ -47,6 +47,20 @@ class Champion
         champion2 = Champion.all.find { |c| c.name == champ2 }
 
         puts "#{champion1.name} vs #{champion2.name}"
+        sleep 1.0
+        puts ""
+        puts "MORTAL KOMBAT!"
+        # binding.pry
+
+        if champion1.powerstats['strength'] > champion2.powerstats['strength']
+            puts "#{champion1.name} was victorious. #{champion2.name} plots their revenge for another day."
+        else
+            puts "#{champion2.name} was victorious. #{champion1.name} plots their revenge for another day."
+        end
+
+        puts ""  # If I have time, I'm going to write a function for space(arg)
+        puts ""
+
 
     end
 
