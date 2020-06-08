@@ -5,7 +5,6 @@ class Cli
     end
 
     def launch
-    #    binding.pry
         input = ""
         while input != "exit"
           puts "Superhero Tournament Organizer 1.0"
@@ -15,7 +14,6 @@ class Cli
           puts "To simulate the fight, type 'simulate'"
           puts "What would you like to do?"
           input = gets.strip
-    #      binding.pry
           case input
           when "participants"  ## spent 5 minutes trying to debug why participants was not recognizing...  it was partypants.
             print_all
@@ -43,19 +41,11 @@ class Cli
         end
       
     end
-    
-
-    def run
-        print_intro
-    #    Api.base # Switched to some base results
-        main
-    end
 
     def main
         print_all
         print_selection_prompt
         name = selection_prompt
-    #   binding.pry
         valid_name?(name)
     end
 
@@ -63,11 +53,9 @@ class Cli
        # id = id.to_i
        if Champion.all.any? {|c| name == c.name }
             true
-         #   print_more_info(name)
-         #   print_tail
         else
             print_bad_name(name)
-            sleep 2.0
+            sleep 1.0
             launch
         end
 
@@ -121,10 +109,6 @@ class Cli
     def selection_prompt
         gets.chomp
     end
-
-    #def search_prompt
-    #    gets.chomp
-    #end
 
     def print_tail ##because spacing looks weird
         puts ""

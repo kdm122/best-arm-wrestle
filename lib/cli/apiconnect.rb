@@ -6,31 +6,18 @@ class Api
   KEY = ENV['SUPER_KEY']
   BASE_URL = 'https://www.superheroapi.com/api.php/'
   
-  def self.base  #Just give us some base results.
-    ## time to get rid of these static fighters.  Let's try and insert an RNG
-
-  #  rng = 5.times.map { rand(1..100) } # realized that RNG actually generates some not-fun seeding...  
+  def self.base  
   rng = [69, 644, 655, 530, 391]
-  #  binding.pry
     rng.each do |random|
       
       res = RestClient.get("#{BASE_URL}#{KEY}/#{random}") #hardcoded just so we can see some results populate, we're going to get rid of that by working more on the search by name.
-   #   binding.pry
-      #    binding.pry # inserting this here because I'm about to start checking into RestClient response codes.  Need to be able to handle failed seearches.    
-      data = JSON.parse(res.body)
-  #    binding.pry
-  #    data["response"] # checking if this was error/success
-  #binding.pry
-   #   data['results'].each do |champ| # can eliminate this now that I'm not seeding with a bunch of data and instead, individual pulls
+       data = JSON.parse(res.body)
         name = data['name']
         id = data['id']
         powerstats = data['powerstats']
         appearance = data['appearance']
-  #      binding.pry
         Champion.new(id, name, powerstats, appearance)
-     # end
     end
-#    binding.pry # going to try out our details
   end
 
 
@@ -46,16 +33,6 @@ class Api
       name_space = name.split(' ').join('%20')
     res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name_space}")
     data = JSON.parse(res.body)
-    #if data['results'].count > 1
-    #  binding.pry
-    #  puts "Too many results.  Select with more specificity from the following:"
-    #  data['results'].each do |champ|
-    #    puts "#{champ['name']}"
-    #  end
-    #  
-    #else
-   
-    
    
     elsif data['response'] == "error"
       puts "Bad Search, not in our Superhero Database"
@@ -75,9 +52,5 @@ class Api
     end
 
   end
-
-  #
-
-  
 
 end
