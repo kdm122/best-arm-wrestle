@@ -39,5 +39,16 @@ class Champion
         #end
     end
 
+    def self.arm_wrestle(champ1, champ2) # welp, gotta do something at some point with this arm wrestle
+        #gonna start this out extra sloppy
+        
+
+        champion1 = Champion.all.find { |c| c.name == champ1 }
+        champion2 = Champion.all.find { |c| c.name == champ2 }
+
+        puts "#{champion1.name} vs #{champion2.name}"
+
+    end
+
 
 end
