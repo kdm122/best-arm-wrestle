@@ -7,7 +7,7 @@ class Cli
     def launch
         input = ""
         while input != "exit"
-          puts "Superhero Tournament Organizer 1.0"
+          puts "Superhero Arm Wrestling Tournament Organizer 1.0"
           puts "To view all presently available participants type 'participants'"
           puts "To search the Superhero database and add new particpants type 'search'"
           puts "To get more information on a participant type 'more info'"
@@ -24,13 +24,14 @@ class Cli
             if valid_name_info?(name)
                 print_more_info(name)
             end
+            print_tail
           when "simulate"  #this is where I'll actually initiate the fight
             print_simulate_prompt
             champ = selection_prompt.split(" vs ")
             valid_name_info?(champ[0])
             valid_name_info?(champ[1])
             Champion.arm_wrestle(champ[0], champ[1])
-            
+            print_tail
           when "search"
             print_search
             name = selection_prompt
@@ -40,13 +41,6 @@ class Cli
     
         end
       
-    end
-
-    def main
-        print_all
-        print_selection_prompt
-        name = selection_prompt
-        valid_name?(name)
     end
 
     def valid_name_info?(name)  #switching up to separate a valid information request and a valid add participant.  I know it's gross, will refactor later
@@ -61,32 +55,19 @@ class Cli
 
     end
 
-    def champion_details(name)
-        Champion.cdet_by_name(name)
-    end
-
-    
-    def print_intro
-        puts "Available Champions"
-    end
-
-    def print_search
-        puts "Search Available Champions"
-    end
-
     def print_all
-        Champion.all.each {|c| puts "Champion) #{c.name}" }
+        puts "Presently available Champions:"
+        Champion.all.each {|c| puts "#{c.name}" }
     end
 
     def print_selection_prompt
-        puts "Select a Champion by Name"
+        puts "Select a Champion by Name (Case Sensitive)"
     end
 
     def print_simulate_prompt
         puts "Set your battle."
         puts "Provide the name of two Champions with the following syntax:"
-        puts "Example:  'Batman vs Daredevil' (Must be part of participant pool)"
-
+        puts "Example:  'Batman vs Kingpin' (Must be part of participant pool, names are case sensitive)"
     end
 
     def print_more_info(name)
@@ -95,11 +76,7 @@ class Cli
     end
 
     def print_search
-        puts "Search for a Champion, they will automatically be added to the pool (Try Batman, Deadpool, etc)"  # switching out the recommendation for superman.  Apparently that pulls Cyborg superman with some nil data.  Not sure I'll get around to nil data checking.
-    end
-
-    def print_add_to_fight
-        puts "Would you like to add them to the match?"
+        puts "Search for a Champion, they will automatically be added to the pool (Try Gambit, Deadpool, etc)"  # switching out the recommendation for superman.  Apparently that pulls Cyborg superman with some nil data.  Not sure I'll get around to nil data checking.
     end
 
     def print_bad_name(name)

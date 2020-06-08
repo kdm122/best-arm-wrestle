@@ -32,11 +32,11 @@ class Champion
 
         champion1 = Champion.all.find { |c| c.name == champ1 }
         champion2 = Champion.all.find { |c| c.name == champ2 }
-
+        sleep 1.0
+        puts ""
         puts "#{champion1.name} vs #{champion2.name}"
         sleep 1.0
         puts ""
-        puts "MORTAL KOMBAT!"
     
         if champion1.powerstats['strength'].to_i > champion2.powerstats['strength'].to_i # fixed a bad comparison
             puts "#{champion1.name} was victorious. #{champion2.name} plots their revenge for another day."

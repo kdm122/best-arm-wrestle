@@ -22,6 +22,10 @@ class Api
 
 
   def self.search_by_name(name)  #search results.
+    name_space = name.split(' ').join('%20')
+    res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name_space}")
+    data = JSON.parse(res.body)
+    
     if name == "Kyle"
       Champion.new(0, "Kyle", {"intelligence"=>"1000", "strength"=>"1000", "speed"=>"1000", "durability"=>"1000", "power"=>"1000", "combat"=>"1000"}, {"gender"=>"Male", "race"=>"Human", "height"=>["5'9", "178 cm"], "weight"=>["170 lb", "77 kg"], "eye-color"=>"Blue", "hair-color"=>"Blonde"})
     puts ""
@@ -30,9 +34,7 @@ class Api
     puts ""
     puts ""
 
-      name_space = name.split(' ').join('%20')
-    res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name_space}")
-    data = JSON.parse(res.body)
+     
    
     elsif data['response'] == "error"
       puts "Bad Search, not in our Superhero Database"
