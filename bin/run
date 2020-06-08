@@ -2,4 +2,4 @@
 
 require_relative '../lib/wrestle_cli.rb'
 
-Cli.new.run
+Cli.new.launch

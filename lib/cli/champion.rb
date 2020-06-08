@@ -19,8 +19,15 @@ class Champion
     def self.cdet_by_name(name)
     #    binding.pry
             champion = Champion.all.find { |c| c.name == name }
-                puts "#{champion.name} is #{champion.appearance}"
-
+            # binding.pry
+                puts "#{champion.name} is #{champion.appearance['race']}, #{champion.appearance['height'][0]} and #{champion.appearance['weight'][0]}" #forcing selection because we don't use the metric system
+                puts ""
+                champion.powerstats.each do |stat|
+                   puts "#{stat[0].capitalize}: #{stat[1]}"
+                end
+                
+                
+             #   puts "Intelligence: " # Got rid of this so that we're iterating rather than hardcoding.
 
     
         #res = RestClient.get("#{BASE_URL}#{KEY}/#{id}")
