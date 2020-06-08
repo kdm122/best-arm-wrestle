@@ -7,18 +7,26 @@ class Api
   BASE_URL = 'https://www.superheroapi.com/api.php/'
   
   def self.base  #Just give us some base results.
-    res = RestClient.get("#{BASE_URL}#{KEY}/search/death") #hardcoded just so we can see some results populate, we're going to get rid of that by working more on the search by name.
-#    binding.pry # inserting this here because I'm about to start checking into RestClient response codes.  Need to be able to handle failed seearches.    
-    data = JSON.parse(res.body)
-#    data["response"] # checking if this was error/success
-#binding.pry
-    data['results'].each do |champ|
-      name = champ['name']
-      id = champ['id']
-      powerstats = champ['powerstats']
-      appearance = champ['appearance']
-#      binding.pry
-      Champion.new(id, name, powerstats, appearance)
+    ## time to get rid of these static fighters.  Let's try and insert an RNG
+
+    rng = 5.times.map { rand(1..100) }
+  #  binding.pry
+    rng.each do |random|
+      
+      res = RestClient.get("#{BASE_URL}#{KEY}/#{random}") #hardcoded just so we can see some results populate, we're going to get rid of that by working more on the search by name.
+   #   binding.pry
+      #    binding.pry # inserting this here because I'm about to start checking into RestClient response codes.  Need to be able to handle failed seearches.    
+      data = JSON.parse(res.body)
+  #    data["response"] # checking if this was error/success
+  #binding.pry
+   #   data['results'].each do |champ| # can eliminate this now that I'm not seeding with a bunch of data and instead, individual pulls
+        name = data['name']
+        id = data['id']
+        powerstats = data['powerstats']
+        appearance = data['appearance']
+  #      binding.pry
+        Champion.new(id, name, powerstats, appearance)
+     # end
     end
 #    binding.pry # going to try out our details
   end
