@@ -5,7 +5,7 @@ This is an initial commit to the repo.  As of right now, I want to see which sup
 
 Project Relevant:
 
-API Key Issuance and API Documentation:  https://superheroapi.com/
+API Key Issuance and API Documentation:  https://superheroapi.com/  An API key is freely available when authenticating with your Facebook account.
 
 Setup .env with the following:
 
@@ -25,6 +25,13 @@ search (allows a user to search for additional characters and add them to the po
 simulate (see who's going to win in an arm wrestle)
 exit
 
+Contributors:
+
+Feel free to contribute code by messaging me directly on Github.
+
+Licenses:
+
+All code is available for use under GNU Licensing.
 
 Project Irrelevant:
 
