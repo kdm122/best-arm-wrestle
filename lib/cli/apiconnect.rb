@@ -36,14 +36,18 @@ class Api
     #  end
     #  
     #else
+    if data['response'] == "error"
+      puts "Bad Search, not in our Superhero Database"
+    else
       data['results'].take(1).each do |champ| # I'm sure I can figure out a better way but this is letting us add Batman to the tournament.  Previous attempts at specificity were causing first person instances without exact matches to be declined.  No Batman... but batman II?
       name = champ['name']
       id = champ['id']
       powerstats = champ['powerstats']
       appearance = champ['appearance']
       Champion.new(id, name, powerstats, appearance)
+      puts "#{name} has been added to our participant pool."
       end
-    #end
+    end
 
   end
 

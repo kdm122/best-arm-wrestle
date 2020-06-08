@@ -9,7 +9,8 @@ class Cli
         input = ""
         while input != "exit"
           puts "Superhero Tournament Organizer 1.0"
-          puts "To view all presently available participants type 'participants'."
+          puts "To view all presently available participants type 'participants'"
+          puts "To search the Superhero database and add new particpants type 'search'"
           puts "To get more information on a participant type 'more info'"
           puts "To simulate the fight, type 'simulate'"
           puts "What would you like to do?"
@@ -24,7 +25,12 @@ class Cli
             name = selection_prompt
             valid_name_info?(name)
           when "simulate"  #this is where I'll actually initiate the fight
-          
+
+          when "search"
+            print_search
+            name = selection_prompt
+            Api.search_by_name(name)
+            print_tail
           end
     
         end
@@ -74,7 +80,7 @@ class Cli
     end
 
     def print_all
-        Champion.all.each {|c| puts "#{c.id}) #{c.name}" }
+        Champion.all.each {|c| puts "Champion) #{c.name}" }
     end
 
     def print_selection_prompt
@@ -84,6 +90,10 @@ class Cli
     def print_more_info(name)
         puts "Info on #{name}"
         Champion.cdet_by_name(name)
+    end
+
+    def print_search
+        puts "Search for a Champion, they will automatically be added to the pool (Try Batman, Superman, etc)"
     end
 
     def print_add_to_fight
@@ -98,11 +108,11 @@ class Cli
         gets.chomp
     end
 
-    def search_prompt
-        gets.chomp
-    end
+    #def search_prompt
+    #    gets.chomp
+    #end
 
-    def print_tail
+    def print_tail ##because spacing looks weird
         puts ""
         puts ""
     end
