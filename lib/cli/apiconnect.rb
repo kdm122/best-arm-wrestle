@@ -28,21 +28,22 @@ class Api
     name_space = name.split(' ').join('%20')
     res = RestClient.get("#{BASE_URL}#{KEY}/search/#{name_space}")
     data = JSON.parse(res.body)
-    if data['results'].count > 1
-      puts "Too many results.  Select with more specificity from the following:"
-      data['results'].each do |champ|
-        puts "#{champ['name']}"
-      end
-      
-    else
-      data['results'].each do |champ| # leftover junk
+    #if data['results'].count > 1
+    #  binding.pry
+    #  puts "Too many results.  Select with more specificity from the following:"
+    #  data['results'].each do |champ|
+    #    puts "#{champ['name']}"
+    #  end
+    #  
+    #else
+      data['results'].take(1).each do |champ| # I'm sure I can figure out a better way but this is letting us add Batman to the tournament.  Previous attempts at specificity were causing first person instances without exact matches to be declined.  No Batman... but batman II?
       name = champ['name']
       id = champ['id']
       powerstats = champ['powerstats']
       appearance = champ['appearance']
       Champion.new(id, name, powerstats, appearance)
       end
-    end
+    #end
 
   end
 
