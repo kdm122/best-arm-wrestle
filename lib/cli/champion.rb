@@ -17,21 +17,53 @@ class Champion
     end
 
     def self.cdet_by_name(name)
-            champion = Champion.all.find { |c| c.name == name }
-                puts "#{champion.name} is #{champion.appearance['race']}, #{champion.appearance['height'][0]} and #{champion.appearance['weight'][0]}" #forcing selection because we don't use the metric system
-                puts ""
-                champion.powerstats.each do |stat|
-                   puts "#{stat[0].capitalize}: #{stat[1]}"
-                end
+        
+        champion = find_by_name(name)
+        champion.details
+    
+    #    champion = Champion.all.find { |c| c.name == name }
+    #            puts "#{champion.name} is #{champion.appearance['race']}, #{champion.appearance['height'][0]} and #{champion.appearance['weight'][0]}" #forcing selection because we don't use the metric system
+    #            puts ""
+    #            champion.powerstats.each do |stat|
+    #               puts "#{stat[0].capitalize}: #{stat[1]}"
+    #            end
     
     end
+
+    def self.create_batch(data_array)
+        data_array.each do |data|
+            name = data['name']
+            id = data['id']
+            powerstats = data['powerstats']
+            appearance = data['appearance']
+            new(id, name, powerstats, appearance)
+        end
+    end
+
+    def details
+
+        deets = "#{name} is #{appearance['race']}, #{appearance['height'][0]} and #{appearance['weight'][0]}" #forcing selection because we don't use the metric system
+        powerstats.each do |stat|
+           deets += "\n#{stat[0].capitalize}: #{stat[1]}"
+        end
+
+        deets
+    end
+
+
+    def self.find_by_name(name)
+
+        all.find { |c| c.name == name }
+
+    end
+
 
     def self.arm_wrestle(champ1, champ2) # welp, gotta do something at some point with this arm wrestle
         #gonna start this out extra sloppy
         
 
-        champion1 = Champion.all.find { |c| c.name == champ1 }
-        champion2 = Champion.all.find { |c| c.name == champ2 }
+        champion1 = find_by_name(champ1)
+        champion2 = find_by_name(champ2)
         sleep 1.0
         puts ""
         puts "#{champion1.name} vs #{champion2.name}"

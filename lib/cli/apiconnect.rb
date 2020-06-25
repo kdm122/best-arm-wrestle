@@ -8,15 +8,10 @@ class Api
   
   def self.base  
   rng = [69, 644, 655, 530, 391]
-    rng.each do |random|
+    rng.map do |random|
       
       res = RestClient.get("#{BASE_URL}#{KEY}/#{random}") #hardcoded just so we can see some results populate, we're going to get rid of that by working more on the search by name.
        data = JSON.parse(res.body)
-        name = data['name']
-        id = data['id']
-        powerstats = data['powerstats']
-        appearance = data['appearance']
-        Champion.new(id, name, powerstats, appearance)
     end
   end
 

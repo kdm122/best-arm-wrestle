@@ -1,7 +1,8 @@
 class Cli
 
     def initialize
-        Api.base
+        data_array = Api.base
+        Champion.create_batch(data_array)
     end
 
     def launch
@@ -72,7 +73,7 @@ class Cli
 
     def print_more_info(name)
         puts "Info on #{name}"
-        Champion.cdet_by_name(name)
+        puts Champion.cdet_by_name(name)
     end
 
     def print_search
